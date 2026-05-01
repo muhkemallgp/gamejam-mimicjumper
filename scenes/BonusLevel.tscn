@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ddl6d5jot6nm7" path="res://assets/sprites/bg_vignette.png" id="94_vig"]
 [ext_resource type="Script" uid="uid://d3wjkwvx23hpt" path="res://scripts/BGMLooper.gd" id="98_loop"]
 [ext_resource type="AudioStream" uid="uid://dl2lkh7tts8ro" path="res://assets/audio/bgm/dungeon_loop.mp3" id="99_bgm"]
+[ext_resource type="Texture2D" path="res://assets/sprites/sparkle.png" id="100_spk"]
 
 [sub_resource type="RectangleShape2D" id="Shape_floor_full"]
 size = Vector2(1000, 32)
@@ -51,17 +52,50 @@ texture = ExtResource("94_vig")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Banner" type="Label" parent="." unique_id=195124570]
+[node name="Banner" type="VBoxContainer" parent="." unique_id=195124570]
 offset_left = 40.0
 offset_top = 30.0
 offset_right = 600.0
-offset_bottom = 70.0
+offset_bottom = 80.0
+alignment = 1
+theme_override_constants/separation = 4
+
+[node name="TitleRow" type="HBoxContainer" parent="Banner"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 6
+
+[node name="SparkleLeft" type="TextureRect" parent="Banner/TitleRow"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("100_spk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleLabel" type="Label" parent="Banner/TitleRow"]
+layout_mode = 2
+text = "TREASURE VAULT"
 theme_override_colors/font_color = Color(1, 0.95, 0.4, 1)
 theme_override_colors/font_outline_color = Color(0.3, 0.15, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 14
-text = "✨ TREASURE VAULT ✨
-Grab everything!"
+
+[node name="SparkleRight" type="TextureRect" parent="Banner/TitleRow"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("100_spk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SubLabel" type="Label" parent="Banner"]
+layout_mode = 2
+text = "Grab everything!"
+theme_override_colors/font_color = Color(1, 0.95, 0.4, 1)
+theme_override_colors/font_outline_color = Color(0.3, 0.15, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 14
 horizontal_alignment = 1
 
 [node name="Floors" type="Node2D" parent="." unique_id=1379226113]

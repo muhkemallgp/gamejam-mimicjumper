@@ -6,7 +6,13 @@ const CONFIRM_SCENE: PackedScene = preload("res://scenes/ConfirmDialog.tscn")
 
 @onready var level_label: Label = $MarginContainer/VBoxContainer/LevelLabel
 @onready var coin_label: Label = $MarginContainer/VBoxContainer/CoinLabel
-@onready var lives_label: Label = $MarginContainer/VBoxContainer/LivesLabel
+@onready var hearts: Array[TextureRect] = [
+	$MarginContainer/VBoxContainer/LivesRow/Heart1,
+	$MarginContainer/VBoxContainer/LivesRow/Heart2,
+	$MarginContainer/VBoxContainer/LivesRow/Heart3,
+	$MarginContainer/VBoxContainer/LivesRow/Heart4,
+	$MarginContainer/VBoxContainer/LivesRow/Heart5,
+]
 @onready var secret_label: Label = $MarginContainer/VBoxContainer/SecretLabel
 @onready var pause_overlay: Control = $PauseOverlay
 @onready var resume_button: Button = $PauseOverlay/Panel/Margin/VBox/ResumeButton
@@ -28,7 +34,8 @@ func _process(_delta: float) -> void:
 		coin_label.text = "COINS: %d / %d" % [Global.level_coins_collected, Global.level_coins_max]
 	else:
 		coin_label.text = "COINS: %d" % Global.level_coins_collected
-	lives_label.text = "LIVES: " + "♥".repeat(max(0, Global.lives))
+	for i in hearts.size():
+		hearts[i].visible = i < Global.lives
 
 	# Hide secret hint entirely once the player has already cashed in the bonus
 	# this run — there's no second visit, so don't tempt them into pit-farming.

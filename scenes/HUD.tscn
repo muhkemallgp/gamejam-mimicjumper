@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/HUD.gd" id="1_script"]
 [ext_resource type="Theme" path="res://assets/default_theme.tres" id="97_theme"]
 [ext_resource type="Texture2D" path="res://assets/sprites/dungeon_ceiling.png" id="3_ceil"]
+[ext_resource type="Texture2D" path="res://assets/sprites/heart.png" id="4_heart"]
 
 [node name="HUD" type="CanvasLayer"]
 process_mode = 3
@@ -49,13 +50,57 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 12
 
-[node name="LivesLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="LivesRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "LIVES: ♥♥♥♥♥"
+theme_override_constants/separation = 2
+
+[node name="LivesLabel" type="Label" parent="MarginContainer/VBoxContainer/LivesRow"]
+layout_mode = 2
+text = "LIVES: "
 theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 12
+
+[node name="Heart1" type="TextureRect" parent="MarginContainer/VBoxContainer/LivesRow"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_heart")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Heart2" type="TextureRect" parent="MarginContainer/VBoxContainer/LivesRow"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_heart")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Heart3" type="TextureRect" parent="MarginContainer/VBoxContainer/LivesRow"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_heart")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Heart4" type="TextureRect" parent="MarginContainer/VBoxContainer/LivesRow"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_heart")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Heart5" type="TextureRect" parent="MarginContainer/VBoxContainer/LivesRow"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_heart")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="SecretLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

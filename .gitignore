@@ -26,6 +26,7 @@ Thumbs.db
 *.pck
 *.x86_64
 *.app
+MimicJumper-*.zip
 
 # Asset audit trail kept under assets/_raw_downloads/ + assets/_extracted/
 # (committed to repo for transparency — total ~22MB, well under GitHub limits)

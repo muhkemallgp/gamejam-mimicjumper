@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://084qkme1jrlo"]
+
+[ext_resource type="Script" uid="uid://b0p7m447m2qs2" path="res://scripts/GameOverScreen.gd" id="1_script"]
+[ext_resource type="Theme" path="res://assets/default_theme.tres" id="97_theme"]
+
+[node name="GameOverScreen" type="Control" unique_id=452235530]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("97_theme")
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="." unique_id=2004032612]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14, 0.05, 0.08, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1568976608]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -180.0
+offset_right = 260.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer" unique_id=366485843]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 32
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="VBoxContainer" unique_id=1135567950]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Level:  1 / 5"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer" unique_id=1342540029]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 16
+text = "Gems:  0"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.6, 1, 0.7, 1)
+text = "  Resume Here  ( -10 gems )  "
+
+[node name="PlayAgainButton" type="Button" parent="VBoxContainer" unique_id=1681588726]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "  Retry Level   [ Space ]  "
+
+[node name="MenuButton" type="Button" parent="VBoxContainer" unique_id=599935486]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "  Main Menu  "

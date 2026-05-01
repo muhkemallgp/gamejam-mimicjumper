@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ConfirmDialog.gd" id="1_script"]
+[ext_resource type="Theme" path="res://assets/default_theme.tres" id="97_theme"]
+
+[node name="ConfirmDialog" type="CanvasLayer"]
+layer = 100
+script = ExtResource("1_script")
+
+[node name="Root" type="Control" parent="."]
+process_mode = 3
+theme = ExtResource("97_theme")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 0
+
+[node name="Dim" type="ColorRect" parent="Root"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.75)
+
+[node name="Panel" type="PanelContainer" parent="Root"]
+self_modulate = Color(0.16, 0.1, 0.2, 0.98)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -90.0
+offset_right = 200.0
+offset_bottom = 90.0
+
+[node name="Margin" type="MarginContainer" parent="Root/Panel"]
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 22
+
+[node name="VBox" type="VBoxContainer" parent="Root/Panel/Margin"]
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Message" type="Label" parent="Root/Panel/Margin/VBox"]
+text = "Are you sure?"
+theme_override_colors/font_color = Color(1, 0.9, 0.6, 1)
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="Root/Panel/Margin/VBox"]
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="YesButton" type="Button" parent="Root/Panel/Margin/VBox/Buttons"]
+theme_override_font_sizes/font_size = 12
+text = "  Yes  "
+
+[node name="NoButton" type="Button" parent="Root/Panel/Margin/VBox/Buttons"]
+theme_override_font_sizes/font_size = 12
+text = "  No  "

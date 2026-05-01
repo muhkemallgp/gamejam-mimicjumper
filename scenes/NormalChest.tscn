@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/NormalChest.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/chest.png" id="2_sprite"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/coin_pickup.ogg" id="3_sfx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chest"]
+size = Vector2(14, 12)
+
+[node name="NormalChest" type="Area2D"]
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1.0, 0.9, 0.5, 1)
+texture = ExtResource("2_sprite")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_chest")
+
+[node name="PickupSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_sfx")
+volume_db = -2.0
+pitch_scale = 0.85

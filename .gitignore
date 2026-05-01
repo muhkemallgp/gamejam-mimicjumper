@@ -1,0 +1,31 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+
+# System / editor
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+*~
+.claude/
+.vscode/
+.idea/
+
+# Build outputs
+/builds/
+/exports/
+*.exe
+*.pck
+*.x86_64
+*.app
+
+# Asset audit trail kept under assets/_raw_downloads/ + assets/_extracted/
+# (committed to repo for transparency — total ~22MB, well under GitHub limits)

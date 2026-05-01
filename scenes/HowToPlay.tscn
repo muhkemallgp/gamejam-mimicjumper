@@ -1,0 +1,233 @@
+[gd_scene load_steps=10 format=3 uid="uid://htp_main_scene"]
+
+[ext_resource type="Script" path="res://scripts/HowToPlay.gd" id="1_script"]
+[ext_resource type="Theme" path="res://assets/default_theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" uid="uid://ci738o8nyorq3" path="res://assets/sprites/parallax_bg.png" id="3_bg"]
+[ext_resource type="Texture2D" uid="uid://dayub8bch65e4" path="res://assets/sprites/coin_spin.png" id="4_coin"]
+[ext_resource type="Texture2D" uid="uid://bki1tffnsi0e" path="res://assets/sprites/mimic_revealed.png" id="5_mimic"]
+[ext_resource type="Texture2D" uid="uid://d3cl7171sivqw" path="res://assets/sprites/spike.png" id="6_spike"]
+[ext_resource type="Texture2D" uid="uid://cgpisx7c8obyg" path="res://assets/sprites/chest.png" id="7_chest"]
+[ext_resource type="Texture2D" uid="uid://7jhpr4hq2wqq" path="res://assets/sprites/mimic_chest_revealed.png" id="8_mchest"]
+[ext_resource type="Texture2D" uid="uid://cej3xlwpx8a5i" path="res://assets/sprites/finish_door.png" id="9_door"]
+
+[sub_resource type="AtlasTexture" id="AT_coin"]
+atlas = ExtResource("4_coin")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AT_mimic"]
+atlas = ExtResource("5_mimic")
+region = Rect2(0, 0, 32, 32)
+
+[node name="HowToPlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2_theme")
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.05, 0.03, 0.1, 1)
+
+[node name="BgTexture" type="TextureRect" parent="."]
+modulate = Color(1.2, 0.8, 1.4, 0.25)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("3_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CenterPanel" type="PanelContainer" parent="."]
+self_modulate = Color(0.1, 0.07, 0.18, 0.93)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -160.0
+offset_right = 300.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 12
+
+[node name="OuterVBox" type="VBoxContainer" parent="CenterPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 0
+
+[node name="TitleLabel" type="Label" parent="CenterPanel/MarginContainer/OuterVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.25, 1)
+theme_override_colors/font_outline_color = Color(0.4, 0, 0.1, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 22
+text = "HOW TO PLAY"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterPanel/MarginContainer/OuterVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+follow_focus = true
+
+[node name="ContentVBox" type="VBoxContainer" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="ObjectiveLabel" type="Label" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer/ContentVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "Auto-run through 5 dungeon levels. Press SPACE (or click) to JUMP — that's your only control. Hit the gem threshold each level and reach the door alive."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Spacer1" type="Control" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer/ContentVBox"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="LegendTitle" type="Label" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer/ContentVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "What you'll see:"
+
+[node name="Grid" type="GridContainer" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer/ContentVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 6
+columns = 2
+
+[node name="CoinIcon" type="TextureRect" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer/ContentVBox/Grid"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = SubResource("AT_coin")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CoinDesc" type="Label" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer/ContentVBox/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.95, 0.5, 1)
+theme_override_font_sizes/font_size = 11
+text = "GEMS — pick up to fill the level threshold. Adds to your run total. Banked to your wallet (for shop) only when you clear a level."
+autowrap_mode = 2
+
+[node name="MimicIcon" type="TextureRect" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer/ContentVBox/Grid"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = SubResource("AT_mimic")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 0.6, 0.6, 1)
+
+[node name="MimicDesc" type="Label" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer/ContentVBox/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 11
+text = "MIMIC GEM — looks like a real gem but flashes red as you approach, then transforms. Touching a revealed mimic = -1 life. Grab it BEFORE it reveals to score."
+autowrap_mode = 2
+
+[node name="SpikeIcon" type="TextureRect" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer/ContentVBox/Grid"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = ExtResource("6_spike")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpikeDesc" type="Label" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer/ContentVBox/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.85, 0.7, 1)
+theme_override_font_sizes/font_size = 11
+text = "SPIKES — floor hazards. -1 life on contact, brief invincibility lets you keep running. Time your jumps to clear them."
+autowrap_mode = 2
+
+[node name="ChestIcon" type="TextureRect" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer/ContentVBox/Grid"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = ExtResource("7_chest")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ChestDesc" type="Label" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer/ContentVBox/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.7, 1, 0.8, 1)
+theme_override_font_sizes/font_size = 11
+text = "CHEST — grants +1 life (capped at 5). If you're already at max lives, you get +5 gems instead."
+autowrap_mode = 2
+
+[node name="MimicChestIcon" type="TextureRect" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer/ContentVBox/Grid"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = ExtResource("8_mchest")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MimicChestDesc" type="Label" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer/ContentVBox/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.6, 0.7, 1)
+theme_override_font_sizes/font_size = 11
+text = "MIMIC CHEST — disguised killer. Same trick as a mimic coin: red flash → reveal → instant kill on contact. Grab early or jump over."
+autowrap_mode = 2
+
+[node name="DoorIcon" type="TextureRect" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer/ContentVBox/Grid"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = ExtResource("9_door")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DoorDesc" type="Label" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer/ContentVBox/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "DOOR — level exit. Pass the gem threshold first or you'll have to retry. A hidden door opens if you fall into the same pit 3x — but the secret vault only appears ONCE per run, so make it count."
+autowrap_mode = 2
+
+[node name="Spacer2" type="Control" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer/ContentVBox"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="GemNote" type="Label" parent="CenterPanel/MarginContainer/OuterVBox/ScrollContainer/ContentVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.7, 0.9, 1)
+theme_override_font_sizes/font_size = 10
+text = "Pit fall sends you back to LEVEL START. Out of lives? Spend 10 gems to RESUME at your last safe spot — you'll get a 3-second freeze countdown to plan your next jump."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ScrollHint" type="Label" parent="CenterPanel/MarginContainer/OuterVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.5, 0.7, 1)
+theme_override_font_sizes/font_size = 9
+text = "↑ scroll for more ↓"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="CenterPanel/MarginContainer/OuterVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 13
+text = "  Back   [ ESC ]  "
+

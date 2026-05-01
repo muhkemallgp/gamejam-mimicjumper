@@ -1,0 +1,231 @@
+[gd_scene format=3 uid="uid://cx3oeo4i3ubo5"]
+
+[ext_resource type="Script" uid="uid://bv30enma8tt4s" path="res://scripts/Level.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/Coin.tscn" id="3_coin"]
+[ext_resource type="PackedScene" uid="uid://jena2agtblih" path="res://scenes/MimicCoin.tscn" id="4_mimic"]
+[ext_resource type="PackedScene" path="res://scenes/Spike.tscn" id="5_spike"]
+[ext_resource type="PackedScene" path="res://scenes/FinishDoor.tscn" id="6_door"]
+[ext_resource type="PackedScene" path="res://scenes/SecretDoor.tscn" id="7_sdoor"]
+[ext_resource type="PackedScene" uid="uid://d3ux6nbsok56t" path="res://scenes/SecretTrigger.tscn" id="8_strig"]
+[ext_resource type="PackedScene" path="res://scenes/SecretWall.tscn" id="9_swall"]
+[ext_resource type="PackedScene" path="res://scenes/HUD.tscn" id="10_hud"]
+[ext_resource type="Texture2D" uid="uid://ci738o8nyorq3" path="res://assets/sprites/parallax_bg.png" id="11_bg"]
+[ext_resource type="Texture2D" uid="uid://bbxwj0btwnhkk" path="res://assets/sprites/tile_floor.png" id="12_floor"]
+[ext_resource type="PackedScene" path="res://scenes/NormalChest.tscn" id="92_chest"]
+[ext_resource type="Texture2D" uid="uid://bkbsxq467g1wt" path="res://assets/sprites/tile_wall.png" id="93_wall"]
+[ext_resource type="Texture2D" uid="uid://ddl6d5jot6nm7" path="res://assets/sprites/bg_vignette.png" id="94_vig"]
+[ext_resource type="Theme" path="res://assets/default_theme.tres" id="97_theme"]
+[ext_resource type="Script" uid="uid://d3wjkwvx23hpt" path="res://scripts/BGMLooper.gd" id="98_loop"]
+[ext_resource type="AudioStream" uid="uid://dl2lkh7tts8ro" path="res://assets/audio/bgm/dungeon_loop.mp3" id="99_bgm"]
+
+[sub_resource type="RectangleShape2D" id="Shape_floor1"]
+size = Vector2(500, 32)
+
+[sub_resource type="RectangleShape2D" id="Shape_floor2"]
+size = Vector2(1020, 32)
+
+[sub_resource type="RectangleShape2D" id="Shape_upper_platform"]
+size = Vector2(360, 16)
+
+[sub_resource type="RectangleShape2D" id="Shape_wall_side"]
+
+[sub_resource type="RectangleShape2D" id="Shape_pillar"]
+size = Vector2(16, 400)
+
+[node name="Level2" type="Node2D" unique_id=472873617]
+script = ExtResource("1_script")
+
+[node name="SkyLayer" type="CanvasLayer" parent="." unique_id=1408226759]
+layer = -10
+
+[node name="SkyRect" type="TextureRect" parent="SkyLayer" unique_id=1397980347]
+modulate = Color(1, 0.95, 1.05, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 360.0
+mouse_filter = 2
+texture = ExtResource("11_bg")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Vignette" type="TextureRect" parent="SkyLayer" unique_id=1340914604]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource("94_vig")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Floors" type="Node2D" parent="." unique_id=1663596305]
+
+[node name="Floor1" type="StaticBody2D" parent="Floors" unique_id=1641638251]
+position = Vector2(250, 136)
+
+[node name="Visual" type="Sprite2D" parent="Floors/Floor1" unique_id=526899250]
+modulate = Color(1.1, 1.05, 0.95, 1)
+scale = Vector2(31.25, 2)
+texture = ExtResource("12_floor")
+
+[node name="Collision" type="CollisionShape2D" parent="Floors/Floor1" unique_id=1592622204]
+shape = SubResource("Shape_floor1")
+
+[node name="Floor2" type="StaticBody2D" parent="Floors" unique_id=1735908059]
+position = Vector2(1090, 136)
+
+[node name="Visual" type="Sprite2D" parent="Floors/Floor2" unique_id=438743941]
+modulate = Color(1.1, 1.05, 0.95, 1)
+scale = Vector2(63.75, 2)
+texture = ExtResource("12_floor")
+
+[node name="Collision" type="CollisionShape2D" parent="Floors/Floor2" unique_id=1180994860]
+shape = SubResource("Shape_floor2")
+
+[node name="UpperPlatform" type="StaticBody2D" parent="Floors" unique_id=441577518]
+position = Vector2(1300, 68)
+
+[node name="Visual" type="Sprite2D" parent="Floors/UpperPlatform" unique_id=1257893560]
+modulate = Color(1.25, 1.1, 0.9, 1)
+scale = Vector2(22.5, 1)
+texture = ExtResource("12_floor")
+
+[node name="Collision" type="CollisionShape2D" parent="Floors/UpperPlatform" unique_id=2047352616]
+shape = SubResource("Shape_upper_platform")
+
+[node name="LeftWall" type="StaticBody2D" parent="Floors" unique_id=1863397546]
+position = Vector2(-8, 0)
+
+[node name="Collision" type="CollisionShape2D" parent="Floors/LeftWall" unique_id=1877738387]
+shape = SubResource("Shape_wall_side")
+
+[node name="EndPillar" type="StaticBody2D" parent="Floors" unique_id=654155976]
+position = Vector2(1490, 0)
+
+[node name="Visual" type="Sprite2D" parent="Floors/EndPillar" unique_id=1039059880]
+modulate = Color(1.1, 1, 0.9, 1)
+position = Vector2(-2, 2)
+scale = Vector2(1, 18.75)
+texture = ExtResource("93_wall")
+
+[node name="Collision" type="CollisionShape2D" parent="Floors/EndPillar" unique_id=1776638425]
+position = Vector2(-2, -1)
+shape = SubResource("Shape_pillar")
+
+[node name="Pickups" type="Node2D" parent="." unique_id=343149015]
+
+[node name="Coin1" parent="Pickups" unique_id=637907091 instance=ExtResource("3_coin")]
+position = Vector2(120, 100)
+
+[node name="Coin2" parent="Pickups" unique_id=721705430 instance=ExtResource("3_coin")]
+position = Vector2(150, 100)
+
+[node name="Coin3" parent="Pickups" unique_id=289803133 instance=ExtResource("3_coin")]
+position = Vector2(180, 100)
+
+[node name="Coin4" parent="Pickups" unique_id=894982646 instance=ExtResource("3_coin")]
+position = Vector2(320, 90)
+
+[node name="MimicCoin1" parent="Pickups" unique_id=388909353 instance=ExtResource("4_mimic")]
+position = Vector2(350, 90)
+
+[node name="Coin5" parent="Pickups" unique_id=1339218889 instance=ExtResource("3_coin")]
+position = Vector2(380, 90)
+
+[node name="Coin6" parent="Pickups" unique_id=1921912160 instance=ExtResource("3_coin")]
+position = Vector2(650, 100)
+
+[node name="Coin7" parent="Pickups" unique_id=245497828 instance=ExtResource("3_coin")]
+position = Vector2(680, 100)
+
+[node name="Coin8" parent="Pickups" unique_id=1379879850 instance=ExtResource("3_coin")]
+position = Vector2(820, 90)
+
+[node name="MimicCoin2" parent="Pickups" unique_id=1334370042 instance=ExtResource("4_mimic")]
+position = Vector2(850, 90)
+
+[node name="Coin9" parent="Pickups" unique_id=1795224546 instance=ExtResource("3_coin")]
+position = Vector2(880, 90)
+
+[node name="Coin10" parent="Pickups" unique_id=1271422119 instance=ExtResource("3_coin")]
+position = Vector2(1020, 100)
+
+[node name="Coin11" parent="Pickups" unique_id=1413427730 instance=ExtResource("3_coin")]
+position = Vector2(1050, 100)
+
+[node name="Coin12" parent="Pickups" unique_id=234189739 instance=ExtResource("3_coin")]
+position = Vector2(1400, 100)
+
+[node name="Coin13" parent="Pickups" unique_id=1528321677 instance=ExtResource("3_coin")]
+position = Vector2(1430, 100)
+
+[node name="BonusCoin1" parent="Pickups" unique_id=1347220935 instance=ExtResource("3_coin")]
+position = Vector2(1200, 50)
+
+[node name="BonusCoin2" parent="Pickups" unique_id=1124817099 instance=ExtResource("3_coin")]
+position = Vector2(1230, 50)
+
+[node name="BonusCoin3" parent="Pickups" unique_id=142474666 instance=ExtResource("3_coin")]
+position = Vector2(1260, 50)
+
+[node name="BonusCoin4" parent="Pickups" unique_id=855541158 instance=ExtResource("3_coin")]
+position = Vector2(1290, 50)
+
+[node name="BonusCoin5" parent="Pickups" unique_id=799681885 instance=ExtResource("3_coin")]
+position = Vector2(1320, 50)
+
+[node name="BonusCoin6" parent="Pickups" unique_id=1770981674 instance=ExtResource("3_coin")]
+position = Vector2(1350, 50)
+
+[node name="Spikes" type="Node2D" parent="." unique_id=671552876]
+
+[node name="Spike1" parent="Spikes" unique_id=705497720 instance=ExtResource("5_spike")]
+position = Vector2(250, 116)
+
+[node name="Spike2" parent="Spikes" unique_id=563835074 instance=ExtResource("5_spike")]
+position = Vector2(960, 116)
+
+[node name="Signs" type="Node2D" parent="." unique_id=1616436806]
+
+[node name="SignPit" type="Label" parent="Signs" unique_id=1458530341]
+offset_left = 450.0
+offset_top = 74.0
+offset_right = 630.0
+offset_bottom = 122.0
+theme = ExtResource("97_theme")
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 8
+text = "
+ SECRET PATH 
+↓↓↓"
+horizontal_alignment = 1
+
+[node name="SecretTrigger" parent="." unique_id=1466366367 instance=ExtResource("8_strig")]
+position = Vector2(540, 260)
+
+[node name="SecretWall" parent="." unique_id=1978514751 instance=ExtResource("9_swall")]
+position = Vector2(1136, 96)
+
+[node name="Player" parent="." unique_id=1313350012 instance=ExtResource("2_player")]
+position = Vector2(40, 100)
+
+[node name="FinishDoor" parent="." unique_id=818666685 instance=ExtResource("6_door")]
+position = Vector2(1440, 44)
+
+[node name="SecretDoor" parent="." unique_id=1232143626 instance=ExtResource("7_sdoor")]
+position = Vector2(1462, 103)
+
+[node name="HUD" parent="." unique_id=1633495799 instance=ExtResource("10_hud")]
+
+[node name="LifeChest1" parent="." unique_id=1046756801 instance=ExtResource("92_chest")]
+position = Vector2(1100, 45)
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1228897967]
+stream = ExtResource("99_bgm")
+volume_db = -12.0
+autoplay = true
+script = ExtResource("98_loop")

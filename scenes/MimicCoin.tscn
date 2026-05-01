@@ -1,0 +1,93 @@
+[gd_scene load_steps=15 format=3 uid="uid://jena2agtblih"]
+
+[ext_resource type="Script" path="res://scripts/MimicCoin.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/coin_spin.png" id="2_coin"]
+[ext_resource type="Texture2D" path="res://assets/sprites/mimic_revealed.png" id="3_mimic"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/mimic_reveal.wav" id="4_sfx"]
+
+[sub_resource type="AtlasTexture" id="AT_mc_coin_0"]
+atlas = ExtResource("2_coin")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AT_mc_coin_1"]
+atlas = ExtResource("2_coin")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AT_mc_coin_2"]
+atlas = ExtResource("2_coin")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AT_mc_coin_3"]
+atlas = ExtResource("2_coin")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AT_mc_mimic_0"]
+atlas = ExtResource("3_mimic")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AT_mc_mimic_1"]
+atlas = ExtResource("3_mimic")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AT_mc_mimic_2"]
+atlas = ExtResource("3_mimic")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AT_mc_mimic_3"]
+atlas = ExtResource("3_mimic")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SF_mc_coin"]
+animations = [{
+"frames": [{"duration": 1.0, "texture": SubResource("AT_mc_coin_0")}, {"duration": 1.0, "texture": SubResource("AT_mc_coin_1")}, {"duration": 1.0, "texture": SubResource("AT_mc_coin_2")}, {"duration": 1.0, "texture": SubResource("AT_mc_coin_3")}],
+"loop": true,
+"name": &"spin",
+"speed": 8.0
+}]
+
+[sub_resource type="SpriteFrames" id="SF_mc_mimic"]
+animations = [{
+"frames": [{"duration": 1.0, "texture": SubResource("AT_mc_mimic_0")}, {"duration": 1.0, "texture": SubResource("AT_mc_mimic_1")}, {"duration": 1.0, "texture": SubResource("AT_mc_mimic_2")}, {"duration": 1.0, "texture": SubResource("AT_mc_mimic_3")}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CS_hit"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CS_detect"]
+radius = 80.0
+
+[node name="MimicCoin" type="Area2D"]
+script = ExtResource("1_script")
+
+[node name="CoinSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SF_mc_coin")
+animation = &"spin"
+autoplay = "spin"
+scale = Vector2(0.6, 0.6)
+
+[node name="RevealedSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SF_mc_mimic")
+animation = &"idle"
+autoplay = "idle"
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CS_hit")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CS_detect")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="RevealSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_sfx")
+volume_db = 2.0
+pitch_scale = 1.1

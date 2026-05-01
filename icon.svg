@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <rect width="128" height="128" fill="#2a1a3a"/>
+  <rect x="24" y="32" width="80" height="64" fill="#8b5a2b" stroke="#4a2a15" stroke-width="3"/>
+  <rect x="24" y="32" width="80" height="16" fill="#a56a35"/>
+  <rect x="60" y="32" width="8" height="64" fill="#5a4020"/>
+  <rect x="24" y="48" width="80" height="6" fill="#5a4020"/>
+  <rect x="58" y="56" width="12" height="14" fill="#ffcc40" stroke="#4a2a15" stroke-width="2"/>
+  <text x="64" y="115" font-family="monospace" font-size="14" fill="#ffcc40" text-anchor="middle" font-weight="bold">MIMIC!</text>
+</svg>

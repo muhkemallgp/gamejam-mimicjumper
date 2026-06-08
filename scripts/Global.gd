@@ -52,6 +52,40 @@ const SKINS: Dictionary = {
 }
 const SKIN_ORDER: Array = ["mask_dude", "pink_man", "ninja_frog", "virtual_guy"]
 
+# ============= Skin abilities =============
+# Each paid skin grants one gameplay perk so skins aren't purely cosmetic.
+const SKIN_ABILITIES: Dictionary = {
+	"mask_dude":   {"power": "Balanced hero. No special edge."},
+	"pink_man":    {"power": "Sturdy: starts with +1 life (6 max).", "bonus_lives": 1},
+	"ninja_frog":  {"power": "Stealthy: secret path opens in 1 fall.", "secret_falls": 1},
+	"virtual_guy": {"power": "Hacker eye: spots mimics from far away.", "mimic_detect_scale": 2.0},
+}
+
+
+func _ability(key: String, fallback):
+	return SKIN_ABILITIES.get(selected_skin, {}).get(key, fallback)
+
+
+func get_max_lives() -> int:
+	return MAX_LIVES + int(_ability("bonus_lives", 0))
+
+
+func get_starting_lives() -> int:
+	return get_max_lives()
+
+
+func get_secret_fall_requirement() -> int:
+	return int(_ability("secret_falls", 3))
+
+
+func get_mimic_detection_scale() -> float:
+	return float(_ability("mimic_detect_scale", 1.0))
+
+
+func get_ability_text(skin_id: String) -> String:
+	return String(SKIN_ABILITIES.get(skin_id, {}).get("power", ""))
+
+
 # ============= Lifecycle =============
 
 func _ready() -> void:
@@ -67,7 +101,7 @@ func reset_for_new_game() -> void:
 	total_coins = 0
 	level_coins_collected = 0
 	level_coins_max = 0
-	lives = MAX_LIVES
+	lives = get_starting_lives()
 	attempt_count = 1
 	pending_resume = false
 	resume_position = Vector2.ZERO
@@ -89,7 +123,7 @@ func lose_life() -> void:
 
 
 func gain_life() -> bool:
-	if lives >= MAX_LIVES:
+	if lives >= get_max_lives():
 		return false
 	lives += 1
 	return true
@@ -99,7 +133,7 @@ func trigger_secret_fall() -> void:
 	secret_fall_count += 1
 	lives += 1
 	print("💀 Secret fall #", secret_fall_count, " in level ", current_level)
-	if secret_fall_count >= 3:
+	if secret_fall_count >= get_secret_fall_requirement():
 		secret_unlocked = true
 		print("✨ SECRET UNLOCKED in level ", current_level)
 
@@ -167,7 +201,7 @@ func retry_after_gameover() -> String:
 	total_coins -= level_coins_collected
 	if total_coins < 0:
 		total_coins = 0
-	lives = MAX_LIVES
+	lives = get_starting_lives()
 	attempt_count += 1
 	reset_secret_state()
 	reset_level_coins()
@@ -319,7 +353,7 @@ func load_progress() -> bool:
 	var run = data["run"]
 	current_level = int(run.get("current_level", 1))
 	total_coins = int(run.get("total_coins", 0))
-	lives = int(run.get("lives", MAX_LIVES))
+	lives = int(run.get("lives", get_starting_lives()))
 	bonus_visited_this_run = bool(run.get("bonus_visited_this_run", false))
 	bonus_return_level = 0
 	secret_fall_count = 0

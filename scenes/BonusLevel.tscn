@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ddl6d5jot6nm7" path="res://assets/sprites/bg_vignette.png" id="94_vig"]
 [ext_resource type="Script" uid="uid://d3wjkwvx23hpt" path="res://scripts/BGMLooper.gd" id="98_loop"]
 [ext_resource type="AudioStream" uid="uid://dl2lkh7tts8ro" path="res://assets/audio/bgm/dungeon_loop.mp3" id="99_bgm"]
-[ext_resource type="Texture2D" path="res://assets/sprites/sparkle.png" id="100_spk"]
+[ext_resource type="Texture2D" uid="uid://cmio8wkgncelo" path="res://assets/sprites/sparkle.png" id="100_spk"]
 
 [sub_resource type="RectangleShape2D" id="Shape_floor_full"]
 size = Vector2(1000, 32)
@@ -21,7 +21,7 @@ size = Vector2(1000, 32)
 size = Vector2(16, 400)
 
 [sub_resource type="RectangleShape2D" id="Shape_pillar"]
-size = Vector2(24, 32)
+size = Vector2(17, 169)
 
 [sub_resource type="RectangleShape2D" id="Shape_door"]
 
@@ -57,15 +57,15 @@ offset_left = 40.0
 offset_top = 30.0
 offset_right = 600.0
 offset_bottom = 80.0
-alignment = 1
 theme_override_constants/separation = 4
-
-[node name="TitleRow" type="HBoxContainer" parent="Banner"]
-layout_mode = 2
 alignment = 1
+
+[node name="TitleRow" type="HBoxContainer" parent="Banner" unique_id=2126411418]
+layout_mode = 2
 theme_override_constants/separation = 6
+alignment = 1
 
-[node name="SparkleLeft" type="TextureRect" parent="Banner/TitleRow"]
+[node name="SparkleLeft" type="TextureRect" parent="Banner/TitleRow" unique_id=2071369083]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 size_flags_vertical = 4
@@ -73,15 +73,15 @@ texture = ExtResource("100_spk")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="TitleLabel" type="Label" parent="Banner/TitleRow"]
+[node name="TitleLabel" type="Label" parent="Banner/TitleRow" unique_id=1116185635]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.4, 1)
+theme_override_colors/font_outline_color = Color(0.3, 0.15, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 14
 text = "TREASURE VAULT"
-theme_override_colors/font_color = Color(1, 0.95, 0.4, 1)
-theme_override_colors/font_outline_color = Color(0.3, 0.15, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 14
 
-[node name="SparkleRight" type="TextureRect" parent="Banner/TitleRow"]
+[node name="SparkleRight" type="TextureRect" parent="Banner/TitleRow" unique_id=1088812529]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 size_flags_vertical = 4
@@ -89,13 +89,13 @@ texture = ExtResource("100_spk")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SubLabel" type="Label" parent="Banner"]
+[node name="SubLabel" type="Label" parent="Banner" unique_id=708907326]
 layout_mode = 2
-text = "Grab everything!"
 theme_override_colors/font_color = Color(1, 0.95, 0.4, 1)
 theme_override_colors/font_outline_color = Color(0.3, 0.15, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 14
+text = "Grab everything!"
 horizontal_alignment = 1
 
 [node name="Floors" type="Node2D" parent="." unique_id=1379226113]
@@ -122,10 +122,12 @@ position = Vector2(1020, 0)
 
 [node name="Visual" type="Sprite2D" parent="Floors/EndPillar" unique_id=1398257155]
 modulate = Color(1.1, 1, 0.9, 1)
+position = Vector2(-11, 3)
 scale = Vector2(1, 18.75)
 texture = ExtResource("93_wall")
 
 [node name="Collision" type="CollisionShape2D" parent="Floors/EndPillar" unique_id=1017243903]
+position = Vector2(-11.5, 68.5)
 shape = SubResource("Shape_pillar")
 
 [node name="Pickups" type="Node2D" parent="." unique_id=1438643681]

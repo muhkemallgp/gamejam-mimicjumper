@@ -102,6 +102,14 @@ texture = ExtResource("4_heart")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="Heart6" type="TextureRect" parent="MarginContainer/VBoxContainer/LivesRow"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_heart")
+expand_mode = 1
+stretch_mode = 5
+
 [node name="SecretLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Secret: ???"

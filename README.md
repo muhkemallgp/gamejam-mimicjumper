@@ -2,6 +2,10 @@
 
 > **A one-button dungeon runner where not every coin wants to be found.**
 
+<p align="center">
+  <img src="docs/cover-image.png" width="100%" alt="MIMIC! cover art" />
+</p>
+
 Sebuah platformer rapid-prototyping yang dibangun dalam satu bulan untuk **Solo Game Project CSCE604021 Game Development — Fakultas Ilmu Komputer Universitas Indonesia**. Game jam submission: **Individual Game Jam CSUI 2026** di itch.io.
 
 ---
@@ -29,13 +33,14 @@ Sebuah platformer rapid-prototyping yang dibangun dalam satu bulan untuk **Solo 
 2. [Diversifier yang Dipilih](#-diversifier-yang-dipilih)
 3. [Fitur Wajib — Mapping](#-fitur-wajib--mapping)
 4. [Cara Main](#-cara-main)
-5. [Level Structure](#-level-structure)
-6. [Mekanik Inti](#-mekanik-inti)
-7. [Arsitektur Teknis](#-arsitektur-teknis)
-8. [Cara Install & Run](#-cara-install--run)
-9. [Project Structure](#-project-structure)
-10. [Kredit Aset](#-kredit-aset)
-11. [Catatan Developer](#-catatan-developer)
+5. [Karakter & Kemampuan](#-karakter--kemampuan)
+6. [Level Structure](#-level-structure)
+7. [Mekanik Inti](#-mekanik-inti)
+8. [Arsitektur Teknis](#-arsitektur-teknis)
+9. [Cara Install & Run](#-cara-install--run)
+10. [Project Structure](#-project-structure)
+11. [Kredit Aset](#-kredit-aset)
+12. [Catatan Developer](#-catatan-developer)
 
 ---
 
@@ -178,6 +183,21 @@ Tidak semua coin harus diambil, tapi ada **minimum** untuk lanjut level. Kalau t
 | 3 | 19 | **9** (~47%) |
 | 4 | 24 | **10** (~42%) |
 | 5 | 27 | **12** (~45%) |
+
+---
+
+## 🦸 Karakter & Kemampuan
+
+Skin di Shop bukan cuma kosmetik. Tiap karakter punya satu kemampuan khusus, jadi pilihan skin ngaruh ke cara main. Mask Dude gratis dan jadi baseline, tiga sisanya dibeli pakai gems dan masing-masing kasih satu perk.
+
+| Karakter | Harga | Kemampuan |
+|----------|-------|-----------|
+| **Mask Dude** | Gratis | Seimbang, tanpa perk khusus |
+| **Pink Man** | 30 gems | Lebih tahan, mulai dengan +1 nyawa (maksimal 6) |
+| **Ninja Frog** | 60 gems | Pemburu rahasia, secret path kebuka cukup 1 kali jatuh (bukan 3) |
+| **Virtual Guy** | 100 gems | Mata peretas, mimic ketahuan dari jarak 2x lebih jauh |
+
+Deskripsi kemampuan ini juga ditampilkan langsung di kartu Shop biar gampang dibandingin sebelum beli.
 
 ---
 

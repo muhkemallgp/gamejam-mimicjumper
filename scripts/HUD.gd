@@ -12,6 +12,7 @@ const CONFIRM_SCENE: PackedScene = preload("res://scenes/ConfirmDialog.tscn")
 	$MarginContainer/VBoxContainer/LivesRow/Heart3,
 	$MarginContainer/VBoxContainer/LivesRow/Heart4,
 	$MarginContainer/VBoxContainer/LivesRow/Heart5,
+	$MarginContainer/VBoxContainer/LivesRow/Heart6,
 ]
 @onready var secret_label: Label = $MarginContainer/VBoxContainer/SecretLabel
 @onready var pause_overlay: Control = $PauseOverlay
@@ -47,7 +48,7 @@ func _process(_delta: float) -> void:
 		secret_label.modulate = Color(1, 0.9, 0.3, 1)
 	elif Global.secret_fall_count > 0:
 		secret_label.visible = true
-		secret_label.text = "DEEPER... %d/3" % Global.secret_fall_count
+		secret_label.text = "DEEPER... %d/%d" % [Global.secret_fall_count, Global.get_secret_fall_requirement()]
 		secret_label.modulate = Color(0.9, 0.6, 1, 1)
 	else:
 		secret_label.visible = true

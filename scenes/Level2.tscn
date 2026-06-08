@@ -214,7 +214,7 @@ position = Vector2(1136, 96)
 position = Vector2(40, 100)
 
 [node name="FinishDoor" parent="." unique_id=818666685 instance=ExtResource("6_door")]
-position = Vector2(1440, 44)
+position = Vector2(1453, 44)
 
 [node name="SecretDoor" parent="." unique_id=1232143626 instance=ExtResource("7_sdoor")]
 position = Vector2(1462, 103)

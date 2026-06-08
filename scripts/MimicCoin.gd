@@ -21,6 +21,8 @@ var base_position: Vector2
 func _ready() -> void:
 	base_position = position
 	revealed_sprite.visible = false
+	# virtual_guy ability: wider detection so mimics reveal from farther.
+	detection_area.scale *= Global.get_mimic_detection_scale()
 	detection_area.body_entered.connect(_on_player_nearby)
 	transform_timer.timeout.connect(_transform)
 	body_entered.connect(_on_body_entered)

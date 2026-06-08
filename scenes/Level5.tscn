@@ -154,7 +154,7 @@ position = Vector2(-8, 0)
 shape = SubResource("Shape_wall_side")
 
 [node name="EndPillar" type="StaticBody2D" parent="Floors" unique_id=859465295]
-position = Vector2(2142, 0)
+position = Vector2(2113, 0)
 
 [node name="Visual" type="Sprite2D" parent="Floors/EndPillar" unique_id=1333914118]
 modulate = Color(1.1, 1, 0.9, 1)
@@ -300,7 +300,7 @@ position = Vector2(1796, 96)
 position = Vector2(40, 100)
 
 [node name="FinishDoor" parent="." unique_id=1741463493 instance=ExtResource("6_door")]
-position = Vector2(2092, 44)
+position = Vector2(2088, 44)
 
 [node name="SecretDoor" parent="." unique_id=2012157269 instance=ExtResource("7_sdoor")]
 position = Vector2(1990, 104)

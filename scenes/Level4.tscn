@@ -162,7 +162,7 @@ position = Vector2(-8, 0)
 shape = SubResource("Shape_wall_side")
 
 [node name="EndPillar" type="StaticBody2D" parent="Floors" unique_id=1200977291]
-position = Vector2(1970, 0)
+position = Vector2(1952, 0)
 
 [node name="Visual" type="Sprite2D" parent="Floors/EndPillar" unique_id=663785247]
 modulate = Color(1.1, 1, 0.9, 1)
@@ -232,10 +232,10 @@ position = Vector2(1549, 99)
 position = Vector2(1630, 100)
 
 [node name="Coin15" parent="Pickups" unique_id=1756667427 instance=ExtResource("3_coin")]
-position = Vector2(2050, 100)
+position = Vector2(1689, 100)
 
 [node name="Coin16" parent="Pickups" unique_id=683195275 instance=ExtResource("3_coin")]
-position = Vector2(2080, 100)
+position = Vector2(1799, 100)
 
 [node name="BonusCoin1" parent="Pickups" unique_id=1495701997 instance=ExtResource("3_coin")]
 position = Vector2(1680, 50)

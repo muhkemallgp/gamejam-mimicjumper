@@ -36,7 +36,7 @@ func _make_card(skin_id: String) -> Control:
 	var equipped: bool = Global.selected_skin == skin_id
 
 	var panel := PanelContainer.new()
-	panel.custom_minimum_size = Vector2(120, 200)
+	panel.custom_minimum_size = Vector2(132, 250)
 	panel.self_modulate = Color(0.14, 0.1, 0.22, 0.9) if not equipped else Color(0.25, 0.2, 0.35, 0.95)
 
 	var margin := MarginContainer.new()
@@ -68,6 +68,16 @@ func _make_card(skin_id: String) -> Control:
 	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	name_label.add_theme_font_size_override("font_size", 11)
 	vb.add_child(name_label)
+
+	# Show the skin's gameplay perk on the card.
+	var ability_label := Label.new()
+	ability_label.text = Global.get_ability_text(skin_id)
+	ability_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	ability_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	ability_label.custom_minimum_size = Vector2(112, 0)
+	ability_label.add_theme_font_size_override("font_size", 8)
+	ability_label.add_theme_color_override("font_color", Color(0.7, 0.9, 1, 0.95))
+	vb.add_child(ability_label)
 
 	var price_label := Label.new()
 	if unlocked:

@@ -6,6 +6,8 @@ extends Area2D
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
+	# Bonus exit shipped with no real trigger shape, so this rebuilds it too.
+	ExitGuard.make_unskippable(self)
 
 
 func _on_body_entered(body: Node2D) -> void:
